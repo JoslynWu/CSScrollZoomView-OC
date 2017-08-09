@@ -19,6 +19,9 @@ static NSString * const CSScrollZoomViewReuseId = @"CSScrollZoomViewReuseId";
 @property (nonatomic, strong) CSScrollZoomViewFlowLayout *flowLayout;
 @property (nonatomic, strong) UICollectionView *mainView;
 @property (nonatomic, assign) CGFloat lastContenOffsetX;
+@property (nonatomic, strong) NSArray<CSScrollZoomViewDataModel *> *models;
+@property (nonatomic, strong) CSScrollZoomViewConfigInfo *configInfo;
+@property (nonatomic, assign) CSScrollZoomViewType dataType;
 
 @end
 
@@ -38,6 +41,12 @@ static NSString * const CSScrollZoomViewReuseId = @"CSScrollZoomViewReuseId";
     self.distanceOfItem = 50.0;
     self.enlargeScale = 0.6;
     self.isScrollFast = YES;
+    self.imgSize = self.itemSize;
+    self.distanceOfImgAndTitle = 0.0;
+    self.imgOffset = UIOffsetZero;
+    self.titleFont = [UIFont boldSystemFontOfSize:15];
+    self.titleColor = [UIColor darkTextColor];
+    self.textAlignment = NSTextAlignmentCenter;
 }
 
 - (void)setupUI {
@@ -59,16 +68,73 @@ static NSString * const CSScrollZoomViewReuseId = @"CSScrollZoomViewReuseId";
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    self.dataType = [self dataTypeWithImageNames:self.imageNames titles:self.titles];
     
     [self adjustItemSize];
+    [self collatingConfigInfo];
+    [self collatingDataModel];
+    
     self.flowLayout.zoomScale = self.enlargeScale;
     self.flowLayout.itemSize = self.itemSize;
     self.flowLayout.minimumLineSpacing = self.distanceOfItem;
     self.mainView.frame = self.bounds;
     self.mainView.decelerationRate = (self.isScrollFast ? UIScrollViewDecelerationRateNormal : UIScrollViewDecelerationRateFast);
     
-    NSUInteger defaultIdex = (repeatCount % 2 == 0 ? repeatCount * 0.5 : (repeatCount - 1) * 0.5) * self.imageNames.count;
+    NSUInteger defaultIdex = (repeatCount % 2 == 0 ? repeatCount * 0.5 : (repeatCount - 1) * 0.5) * self.models.count;
     [self adjustPostionWithIndex:defaultIdex];
+}
+
+#pragma mark  -  action
+- (void)collatingDataModel {
+    if (self.dataType == CSScrollZoomViewTypeNone) {
+        return;
+    }
+    
+    NSUInteger count = MAX(self.imageNames.count, self.titles.count);
+    NSMutableArray<CSScrollZoomViewDataModel *> *mArr = [NSMutableArray arrayWithCapacity:count];
+    for (NSInteger i = 0; i < count; i++) {
+        CSScrollZoomViewDataModel *model = [CSScrollZoomViewDataModel new];
+        model.placeholderImageName = self.placeholderImageName;
+        [mArr addObject:model];
+    }
+    
+    [mArr enumerateObjectsUsingBlock:^(CSScrollZoomViewDataModel *model, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (self.dataType == CSScrollZoomViewTypeImageOnly) {
+            model.imageName = (idx < self.imageNames.count ? [self.imageNames objectAtIndex:idx] : @"");
+        } else if (self.dataType == CSScrollZoomViewTypeTitleOnly) {
+            model.title = (idx < self.titles.count ? [self.titles objectAtIndex:idx] : @"");
+        } else {
+            model.imageName = (idx < self.imageNames.count ? [self.imageNames objectAtIndex:idx] : @"");
+            model.title = (idx < self.titles.count ? [self.titles objectAtIndex:idx] : @"");
+        }
+    }];
+    
+    self.models = mArr.copy;
+}
+
+- (CSScrollZoomViewType)dataTypeWithImageNames:(NSArray<NSString *> *)names titles:(NSArray<NSString *> *)titles {
+    if (names.count > 0) {
+        if (titles.count > 0) {
+            return CSScrollZoomViewTypeAll;
+        } else {
+            return CSScrollZoomViewTypeImageOnly;
+        }
+    } else {
+        if (titles.count > 0) {
+            return CSScrollZoomViewTypeTitleOnly;
+        } else {
+            return CSScrollZoomViewTypeNone;
+        }
+    }
+}
+
+- (void)collatingConfigInfo {
+    self.configInfo.titleFont = self.titleFont;
+    self.configInfo.titleColor = self.titleColor;
+    self.configInfo.imgSize = self.imgSize;
+    self.configInfo.distanceOfImgAndTitle = self.distanceOfImgAndTitle;
+    self.configInfo.imgOffset = self.imgOffset;
+    self.configInfo.textAlignment = self.textAlignment;
 }
 
 - (void)adjustPostionWithIndex:(NSInteger)idx {
@@ -91,20 +157,23 @@ static NSString * const CSScrollZoomViewReuseId = @"CSScrollZoomViewReuseId";
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.imageNames.count * repeatCount;
+    return self.models.count * repeatCount;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     CSScrollZoomViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CSScrollZoomViewReuseId forIndexPath:indexPath];
-    cell.placeholderImageName = self.placeholderImageName;
-    cell.imageName = [self.imageNames objectAtIndex:indexPath.item % self.imageNames.count];
-   
+    cell.cellType = self.dataType;
+    cell.configInfo = self.configInfo;
+    cell.model = [self.models objectAtIndex:indexPath.item % self.models.count];
+    
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"---->%zd", indexPath.item % self.imageNames.count);
+    if (self.itemDidClick) {
+        self.itemDidClick(indexPath.item % self.models.count);
+    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -112,7 +181,7 @@ static NSString * const CSScrollZoomViewReuseId = @"CSScrollZoomViewReuseId";
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    NSUInteger itemCount = self.imageNames.count;
+    NSUInteger itemCount = self.models.count;
     NSUInteger retentionCount = itemCount * retention_group;
     CGFloat item_w = self.itemSize.width;
     NSUInteger index = (NSUInteger)((self.lastContenOffsetX + self.mainView.bounds.size.width * 0.5 - item_w * 0.5) / (item_w + self.distanceOfItem));
@@ -120,6 +189,14 @@ static NSString * const CSScrollZoomViewReuseId = @"CSScrollZoomViewReuseId";
         NSUInteger defaultIdex = (repeatCount % 2 == 0 ? repeatCount * 0.5 : (repeatCount - 1) * 0.5) * itemCount;
         [self adjustPostionWithIndex:defaultIdex + (index % itemCount)];
     }
+}
+
+#pragma mark  -  setter / getter
+- (CSScrollZoomViewConfigInfo *)configInfo {
+    if (!_configInfo) {
+        _configInfo = [[CSScrollZoomViewConfigInfo alloc] init];
+    }
+    return _configInfo;
 }
 
 
