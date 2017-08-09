@@ -10,6 +10,8 @@
 
 @interface CSScrollZoomView : UIView
 
+- (void)reloadData;
+
 @property (nonatomic, copy) void(^itemDidClick)(NSUInteger index);
 
 @property (nonatomic, strong) NSArray<NSString *> *imageNames;

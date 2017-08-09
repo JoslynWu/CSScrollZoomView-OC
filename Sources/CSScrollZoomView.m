@@ -27,6 +27,13 @@ static NSString * const CSScrollZoomViewReuseId = @"CSScrollZoomViewReuseId";
 
 @implementation CSScrollZoomView
 
+#pragma mark  -  public
+- (void)reloadData {
+    [self refreshFrame];
+    [self.mainView reloadData];
+}
+
+#pragma mark  -  lifecycle
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -68,6 +75,15 @@ static NSString * const CSScrollZoomViewReuseId = @"CSScrollZoomViewReuseId";
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    
+    [self refreshFrame];
+    
+    NSUInteger defaultIdex = (repeatCount % 2 == 0 ? repeatCount * 0.5 : (repeatCount - 1) * 0.5) * self.models.count;
+    [self adjustPostionWithIndex:defaultIdex];
+}
+
+#pragma mark  -  action
+- (void)refreshFrame {
     self.dataType = [self dataTypeWithImageNames:self.imageNames titles:self.titles];
     
     [self adjustItemSize];
@@ -79,12 +95,8 @@ static NSString * const CSScrollZoomViewReuseId = @"CSScrollZoomViewReuseId";
     self.flowLayout.minimumLineSpacing = self.distanceOfItem;
     self.mainView.frame = self.bounds;
     self.mainView.decelerationRate = (self.isScrollFast ? UIScrollViewDecelerationRateNormal : UIScrollViewDecelerationRateFast);
-    
-    NSUInteger defaultIdex = (repeatCount % 2 == 0 ? repeatCount * 0.5 : (repeatCount - 1) * 0.5) * self.models.count;
-    [self adjustPostionWithIndex:defaultIdex];
 }
 
-#pragma mark  -  action
 - (void)collatingDataModel {
     if (self.dataType == CSScrollZoomViewTypeNone) {
         return;
@@ -198,6 +210,7 @@ static NSString * const CSScrollZoomViewReuseId = @"CSScrollZoomViewReuseId";
     }
     return _configInfo;
 }
+
 
 
 @end
