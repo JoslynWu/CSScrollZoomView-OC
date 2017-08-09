@@ -12,10 +12,16 @@
 
 @property (nonatomic, strong) NSArray<NSString *> *imageNames;
 
-@property (nonatomic, assign) CGFloat zoomScale;
+/** 放大比例，默认0.6 */
+@property (nonatomic, assign) CGFloat enlargeScale;
 
 @property (nonatomic, assign) CGSize itemSize;
 
 @property (nonatomic, assign) CGFloat distanceOfItem;
+
+/** 自由滚动速率的快慢，默认YES */
+@property (nonatomic, assign) BOOL isScrollFast;
+
+@property (nonatomic, strong) NSString *placeholderImageName;
 
 @end

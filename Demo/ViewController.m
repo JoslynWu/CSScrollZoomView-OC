@@ -24,6 +24,7 @@
     [self.view addSubview:scrollZoomView];
     scrollZoomView.imageNames = @[@"000", @"001"];
     scrollZoomView.frame = CGRectMake(0, 200, kScreeSize.width, 190);
+    scrollZoomView.itemSize = CGSizeMake(100, 100);
 }
 
 

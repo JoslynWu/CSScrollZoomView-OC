@@ -15,9 +15,13 @@
 		9E092C8B1F39CA6C0067B7D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E092C821F39CA6C0067B7D8 /* Main.storyboard */; };
 		9E092C8C1F39CA6C0067B7D8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E092C841F39CA6C0067B7D8 /* main.m */; };
 		9E092C8D1F39CA6C0067B7D8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E092C861F39CA6C0067B7D8 /* ViewController.m */; };
+		9E1FCAAF1F3AB10C00C3CB69 /* CSScrollZoomViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1FCAAE1F3AB10C00C3CB69 /* CSScrollZoomViewCell.m */; };
+		CC27F6B2807BF649B960CADF /* Pods_CSScrollZoomView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98DA655FB68CB7EFBC72C97E /* Pods_CSScrollZoomView.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6E5B2B8FF6947CBE7881DEC1 /* Pods-CSScrollZoomView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CSScrollZoomView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CSScrollZoomView/Pods-CSScrollZoomView.debug.xcconfig"; sourceTree = "<group>"; };
+		98DA655FB68CB7EFBC72C97E /* Pods_CSScrollZoomView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CSScrollZoomView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E092C591F39C9580067B7D8 /* CSScrollZoomView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSScrollZoomView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E092C741F39CA5E0067B7D8 /* CSScrollZoomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSScrollZoomView.h; sourceTree = "<group>"; };
 		9E092C751F39CA5E0067B7D8 /* CSScrollZoomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSScrollZoomView.m; sourceTree = "<group>"; };
@@ -32,6 +36,9 @@
 		9E092C841F39CA6C0067B7D8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9E092C851F39CA6C0067B7D8 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		9E092C861F39CA6C0067B7D8 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9E1FCAAD1F3AB10C00C3CB69 /* CSScrollZoomViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSScrollZoomViewCell.h; sourceTree = "<group>"; };
+		9E1FCAAE1F3AB10C00C3CB69 /* CSScrollZoomViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSScrollZoomViewCell.m; sourceTree = "<group>"; };
+		AB657D0A0755C7DF9E64D302 /* Pods-CSScrollZoomView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CSScrollZoomView.release.xcconfig"; path = "Pods/Target Support Files/Pods-CSScrollZoomView/Pods-CSScrollZoomView.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC27F6B2807BF649B960CADF /* Pods_CSScrollZoomView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +59,8 @@
 				9E092C731F39CA5E0067B7D8 /* Sources */,
 				9E092C7A1F39CA6C0067B7D8 /* Demo */,
 				9E092C5A1F39C9580067B7D8 /* Products */,
+				CD8266B0AA423EDDC55CB80B /* Pods */,
+				CD91C588AC5FBC06936131E8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,6 +79,8 @@
 				9E092C751F39CA5E0067B7D8 /* CSScrollZoomView.m */,
 				9E092C761F39CA5E0067B7D8 /* CSScrollZoomViewFlowLayout.h */,
 				9E092C771F39CA5E0067B7D8 /* CSScrollZoomViewFlowLayout.m */,
+				9E1FCAAD1F3AB10C00C3CB69 /* CSScrollZoomViewCell.h */,
+				9E1FCAAE1F3AB10C00C3CB69 /* CSScrollZoomViewCell.m */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -97,6 +109,23 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		CD8266B0AA423EDDC55CB80B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6E5B2B8FF6947CBE7881DEC1 /* Pods-CSScrollZoomView.debug.xcconfig */,
+				AB657D0A0755C7DF9E64D302 /* Pods-CSScrollZoomView.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CD91C588AC5FBC06936131E8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				98DA655FB68CB7EFBC72C97E /* Pods_CSScrollZoomView.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -104,9 +133,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9E092C701F39C9580067B7D8 /* Build configuration list for PBXNativeTarget "CSScrollZoomView" */;
 			buildPhases = (
+				64950A7E121B8A36B3F32582 /* [CP] Check Pods Manifest.lock */,
 				9E092C551F39C9580067B7D8 /* Sources */,
 				9E092C561F39C9580067B7D8 /* Frameworks */,
 				9E092C571F39C9580067B7D8 /* Resources */,
+				F6968F2387046CC43DE947D0 /* [CP] Embed Pods Frameworks */,
+				C5D7E9B07E7BFCAC39D103DC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -164,6 +196,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		64950A7E121B8A36B3F32582 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CSScrollZoomView-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C5D7E9B07E7BFCAC39D103DC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CSScrollZoomView/Pods-CSScrollZoomView-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F6968F2387046CC43DE947D0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CSScrollZoomView/Pods-CSScrollZoomView-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CSToast-OC/CSToast_OC.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CSToast_OC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CSScrollZoomView/Pods-CSScrollZoomView-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9E092C551F39C9580067B7D8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -171,6 +259,7 @@
 			files = (
 				9E092C8D1F39CA6C0067B7D8 /* ViewController.m in Sources */,
 				9E092C871F39CA6C0067B7D8 /* AppDelegate.m in Sources */,
+				9E1FCAAF1F3AB10C00C3CB69 /* CSScrollZoomViewCell.m in Sources */,
 				9E092C791F39CA5E0067B7D8 /* CSScrollZoomViewFlowLayout.m in Sources */,
 				9E092C781F39CA5E0067B7D8 /* CSScrollZoomView.m in Sources */,
 				9E092C8C1F39CA6C0067B7D8 /* main.m in Sources */,
@@ -291,10 +380,12 @@
 		};
 		9E092C711F39C9580067B7D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E5B2B8FF6947CBE7881DEC1 /* Pods-CSScrollZoomView.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ZBKAZS25AB;
 				INFOPLIST_FILE = "$(SRCROOT)/Demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.joslyn.wu.CSScrollZoomView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -303,10 +394,12 @@
 		};
 		9E092C721F39C9580067B7D8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB657D0A0755C7DF9E64D302 /* Pods-CSScrollZoomView.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ZBKAZS25AB;
 				INFOPLIST_FILE = "$(SRCROOT)/Demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.joslyn.wu.CSScrollZoomView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
