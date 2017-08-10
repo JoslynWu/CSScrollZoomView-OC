@@ -43,6 +43,8 @@ typedef NS_ENUM(NSInteger, CSScrollZoomViewType) {
 @property (nonatomic, assign) CGSize imgSize;
 @property (nonatomic, assign) CGFloat distanceOfImgAndTitle;
 @property (nonatomic, assign) UIOffset imgOffset;
+@property (nonatomic, strong) UIColor *itemBackgroundColor;
+@property (nonatomic, strong) UIColor *titleLabelBGColor;
 
 
 @end

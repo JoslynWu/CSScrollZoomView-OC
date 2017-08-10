@@ -21,7 +21,6 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.contentView.backgroundColor = [UIColor whiteColor];
         [self setupUI];
     }
     return self;
@@ -45,6 +44,7 @@
 
 #pragma mark  -  action
 - (void)refreshFrame {
+    self.contentView.backgroundColor = self.configInfo.itemBackgroundColor;
     if (self.cellType == CSScrollZoomViewTypeNone) { return; }
     
     self.titleLabel.hidden = (self.cellType == CSScrollZoomViewTypeImageOnly);
@@ -53,7 +53,7 @@
         return;
     }
     
-    self.titleLabel.backgroundColor = [UIColor lightGrayColor];
+    self.titleLabel.backgroundColor = self.configInfo.titleLabelBGColor;
     self.titleLabel.textAlignment = self.configInfo.textAlignment;
     self.titleLabel.textColor = self.configInfo.titleColor;
     self.titleLabel.font = self.configInfo.titleFont;

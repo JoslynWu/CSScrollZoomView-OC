@@ -25,6 +25,8 @@
 
 @property (nonatomic, assign) CGFloat distanceOfItem;
 
+@property (nonatomic, strong) UIColor *itemBackgroundColor;
+
 /** 只有图片时，imgSize = itemSize。 */
 @property (nonatomic, assign) CGSize imgSize;
 @property (nonatomic, assign) UIOffset imgOffset;
@@ -41,5 +43,6 @@
 @property (nonatomic, strong) UIFont *titleFont;
 @property (nonatomic, strong) UIColor *titleColor;
 @property (nonatomic, assign) NSTextAlignment textAlignment;
+@property (nonatomic, strong) UIColor *titleLabelBGColor;
 
 @end

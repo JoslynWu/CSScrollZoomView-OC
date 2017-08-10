@@ -54,6 +54,8 @@ static NSString * const CSScrollZoomViewReuseId = @"CSScrollZoomViewReuseId";
     self.titleFont = [UIFont boldSystemFontOfSize:15];
     self.titleColor = [UIColor darkTextColor];
     self.textAlignment = NSTextAlignmentCenter;
+    self.itemBackgroundColor = [UIColor whiteColor];
+    self.titleLabelBGColor = [UIColor clearColor];
 }
 
 - (void)setupUI {
@@ -65,11 +67,11 @@ static NSString * const CSScrollZoomViewReuseId = @"CSScrollZoomViewReuseId";
     UICollectionView *mainView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
     self.mainView = mainView;
     [self addSubview:mainView];
-    mainView.backgroundColor = [UIColor brownColor];
     mainView.dataSource = self;
     mainView.delegate = self;
     mainView.showsHorizontalScrollIndicator = NO;
     mainView.showsVerticalScrollIndicator = NO;
+    mainView.backgroundColor = [UIColor clearColor];
     [mainView registerClass:[CSScrollZoomViewCell class] forCellWithReuseIdentifier:CSScrollZoomViewReuseId];
 }
 
@@ -147,6 +149,8 @@ static NSString * const CSScrollZoomViewReuseId = @"CSScrollZoomViewReuseId";
     self.configInfo.distanceOfImgAndTitle = self.distanceOfImgAndTitle;
     self.configInfo.imgOffset = self.imgOffset;
     self.configInfo.textAlignment = self.textAlignment;
+    self.configInfo.itemBackgroundColor = self.itemBackgroundColor;
+    self.configInfo.titleLabelBGColor = self.titleLabelBGColor;
 }
 
 - (void)adjustPostionWithIndex:(NSInteger)idx {
